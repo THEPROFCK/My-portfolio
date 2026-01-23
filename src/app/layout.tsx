@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// @ts-expect-error: TypeScript does not recognize CSS imports by default
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
@@ -32,8 +31,8 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
-      <Footer />
     </html>
   );
 }
