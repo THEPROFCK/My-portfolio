@@ -576,6 +576,92 @@ Live Platform: [https://pathfinder-sooty.vercel.app/](https://pathfinder-sooty.v
   tags: ["Careers", "Students", "Open Source"],
   featured: false,
 },
+{
+  slug: "how-i-built-pathfinder",
+  title: "From Confusion to Clarity: How I Built PathFinder",
+  excerpt:
+    "PathFinder is an open-source career discovery platform built to help students and young professionals escape the 'delulu' of career uncertainty and find real direction.",
+  content: `
+# From Confusion to Clarity: How I Built PathFinder
+
+The first problem wasn’t code. It was clarity.
+
+Before PathFinder became a product, it was a feeling I knew too well. Like many students and early-career professionals, I didn’t lack interest or ability I lacked direction. That gap between potential and direction is exactly why I built PathFinder.
+
+Try it now: [https://pathfinder-sooty.vercel.app/](https://pathfinder-sooty.vercel.app/)
+
+---
+
+## The Problem: The "Delulu" Gap
+
+I saw the same confusion everywhere:
+- Students like me: Stuck in "delulu" dreaming of the end goal but lost on the first step.
+- Graduates: Stuck between multiple interests and paralyzed by choice.
+- Learners: Picking up skills without knowing where they actually lead.
+
+Most advice online felt generic. Most tools assumed you already knew what you wanted. I wanted to build something that helped people see their options clearly based on who they are, not just what is trending.
+
+---
+
+## Defining the Scope (and Resisting Overbuilding)
+
+One of the hardest parts wasn’t building it was limiting the scope. I knew I could add courses, mentorship, and job matching, but I knew Version 1 had to ship.
+
+PathFinder V1 focuses strictly on:
+- Career Exploration: Understanding where you actually fit.
+- Skill Awareness: Shifting from "what I lack" to "what I can build on."
+- Informed Decision-Making: Moving from guesswork to data-backed possibilities.
+
+---
+
+## The Tech Stack: Simple and Intentional
+
+I chose tools that let me move fast and stayed out of my way.
+
+Frontend
+- Next.js: For structure, routing, and performance.
+- TypeScript: For a safer codebase and fewer silent bugs.
+- Tailwind CSS: For fast, consistent UI without over-designing.
+
+Logic & AI
+- OpenAI via OpenRouter: To generate thoughtful, contextual career insights.
+- Structured Prompts: Ensuring the AI supports your thinking rather than just giving "magic answers."
+
+Deployment
+- Vercel: Frictionless deployment so I could focus on the product.
+
+---
+
+## How I Actually Built It (In One Day)
+
+Yes PathFinder V1 was built in a day. Not because it was rushed, but because the scope was clear.
+
+The process wasn't linear. It was a cycle of building a feature, realizing it was confusing, stripping it down, and rewriting the logic. I spent most of my time asking one question: Does this reduce confusion or add to it? If it didn't improve clarity, it didn’t ship.
+
+---
+
+## Lessons from the Build
+
+1. Clarity comes from building: Stop planning forever. The answers are in the execution.
+2. AI with Responsibility: I didn’t want a tool that said, "Here is your destiny." Instead, it says, "Here are thoughtful possibilities you decide."
+3. Useful beats Perfect: Imposter syndrome made me ask if I was "qualified" to build this. Shipping anyway taught me that solving a real problem matters more than having all the answers.
+
+---
+
+## Why I Built in Public
+
+PathFinder is open-source because learning shouldn’t be hidden and feedback makes products better. Building in public turns the product into a conversation rather than a monologue.
+
+If you’re a student, a graduate, or someone rethinking your direction, I’d love your feedback.
+
+Live Platform: [https://pathfinder-sooty.vercel.app/](https://pathfinder-sooty.vercel.app/)
+GitHub Repository: [https://github.com/THEPROFCK/PathFinder](https://github.com/THEPROFCK/PathFinder)
+`,
+  publishedAt: "2024-01-20",
+  readTime: "5 min read",
+  tags: ["Build In Public", "Career Clarity", "Open Source"],
+  featured: false,
+}
 
   
 ];
