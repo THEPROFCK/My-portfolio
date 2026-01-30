@@ -13,7 +13,7 @@ const footerLinks = {
     { name: "Contact", href: "#contact" },
   ],
   resources: [
-    { name: "Resume", href: "/resume" },
+    { name: "Resume", href: "/Private/Peter-Caulcrick.pdf", download: true },
     { name: "Newsletter", href: "/newsletter" },
   ],
   legal: [
