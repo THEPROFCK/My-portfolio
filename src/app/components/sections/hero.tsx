@@ -127,29 +127,16 @@ export default function Hero() {
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 pt-20 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto text-left"
-        >
+        <div className="max-w-6xl mx-auto text-left">
           {/* Intro */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-2"
-          >
+          <div className="mb-2">
             <span className="text-base sm:text-lg text-slate-400 font-normal uppercase tracking-wider">
               Hey, I'm
             </span>
-          </motion.div>
+          </div>
 
           {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+          <h1
             className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] font-black uppercase tracking-tighter mb-1 text-slate-100 leading-[0.85]"
             style={{
               fontFamily:
@@ -160,34 +147,24 @@ export default function Hero() {
             Peter
             <br />
             Caulcrick
-          </motion.h1>
+          </h1>
 
           {/* Role */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-10 uppercase tracking-wide"
-          >
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-10 uppercase tracking-wide">
             Software Developer
-          </motion.h2>
+          </h2>
 
           {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-base sm:text-xl md:text-2xl text-white/70 max-w-4xl mb-8 sm:mb-12 leading-relaxed font-light"
-          >
+          <p className="text-base sm:text-xl md:text-2xl text-white/70 max-w-4xl mb-8 sm:mb-12 leading-relaxed font-light">
             I build clean, scalable software with intuitive user experiences
             turning complex problems into solutions people love.
-          </motion.p>
+          </p>
 
           {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
             className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
           >
             <Button size="lg" className="group w-full sm:w-auto justify-center">
@@ -224,7 +201,7 @@ export default function Hero() {
               <motion.div className="w-1 h-2 bg-white/50 rounded-full" />
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Subtle grain */}
