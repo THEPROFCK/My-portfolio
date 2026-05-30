@@ -18,6 +18,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Peter Caulcrick",
   description: "My portfolio showcasing my work and skills.",
+  // icons: "/favicon.ico",
+
+  openGraph: {
+    title: "Peter Caulcrick",
+    description: "My portfolio showcasing my work and skills.",
+    url: "https://peter-caulcrick.vercel.app/",
+    siteName: "Peter Caulcrick",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Preview Image",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({

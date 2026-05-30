@@ -53,7 +53,7 @@ const skills = [
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-120px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   return (
     <section id="about" className="relative py-24 sm:py-32 bg-black overflow-hidden">

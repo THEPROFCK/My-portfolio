@@ -6,17 +6,20 @@ import { ArrowRight, FileText } from "lucide-react";
 
 /* -------------------------------- Floating Paths -------------------------------- */
 
+const PATH_COUNT = 12;
+const pathDurations = Array.from({ length: PATH_COUNT }, (_, i) => 20 + (i * 7) % 10);
+
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 36 }, (_, i) => ({
+  const paths = Array.from({ length: PATH_COUNT }, (_, i) => ({
     id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}
-        C-${380 - i * 5 * position} -${189 + i * 6}
-        -${312 - i * 5 * position} ${216 - i * 6}
-        ${152 - i * 5 * position} ${343 - i * 6}
-        C${616 - i * 5 * position} ${470 - i * 6}
-        ${684 - i * 5 * position} ${875 - i * 6}
-        ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.03,
+    d: `M-${380 - i * 15 * position} -${189 + i * 18}
+        C-${380 - i * 15 * position} -${189 + i * 18}
+        -${312 - i * 15 * position} ${216 - i * 18}
+        ${152 - i * 15 * position} ${343 - i * 18}
+        C${616 - i * 15 * position} ${470 - i * 18}
+        ${684 - i * 15 * position} ${875 - i * 18}
+        ${684 - i * 15 * position} ${875 - i * 18}`,
+    width: 0.5 + i * 0.08,
   }));
 
   return (
@@ -33,15 +36,12 @@ function FloatingPaths({ position }: { position: number }) {
             d={path.d}
             stroke="rgb(148, 163, 184)"
             strokeWidth={path.width}
-            strokeOpacity={0.03 + path.id * 0.012}
+            strokeOpacity={0.03 + path.id * 0.03}
             fill="none"
-            initial={{ pathLength: 0.3, opacity: 0.3 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.2, 0.45, 0.2],
-            }}
+            initial={{ opacity: 0.2 }}
+            animate={{ opacity: [0.2, 0.45, 0.2] }}
             transition={{
-              duration: 20 + Math.random() * 10,
+              duration: pathDurations[path.id],
               repeat: Infinity,
               ease: "linear",
             }}

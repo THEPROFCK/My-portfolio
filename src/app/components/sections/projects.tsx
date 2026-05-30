@@ -167,7 +167,7 @@ const ProjectCard = ({ project, index, isInView }: ProjectCardProps) => {
 
 export default function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   return (
     <section id="projects" className="relative py-24 sm:py-32 bg-black overflow-hidden">

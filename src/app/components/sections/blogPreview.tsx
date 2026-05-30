@@ -8,7 +8,7 @@ import { blogPosts } from "@/lib/blog";
 
 export default function BlogPreview() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   // Get first 3 posts
   const previewPosts = blogPosts.slice(0, 3);
