@@ -1,20 +1,23 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Send, Mail, MapPin, Github, Linkedin, Instagram } from "lucide-react";
+import React, { useState } from "react";
+import { Github, Linkedin, Instagram, Mail, MapPin, Send } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/THEPROFCK", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/caulcrick-peter-a65a672b8/", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/theprof._ck/", label: "Instagram" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/caulcrick-peter-a65a672b8/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/theprof._ck/",
+    label: "Instagram",
+  },
   {
     icon: (props: { className?: string }) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className={props.className || "h-6 w-6 text-white/70"}
-      >
+      <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
       </svg>
     ),
@@ -24,14 +27,9 @@ const socialLinks = [
 ];
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px" });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,24 +47,18 @@ export default function Contact() {
           name: formData.get("name"),
           email: formData.get("email"),
           message: formData.get("message"),
-          company: formData.get("company"), // honeypot
+          company: formData.get("company"),
         }),
       });
 
       const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.details || data.error || "Failed");
-      }
+      if (!res.ok) throw new Error(data.details || data.error || "Failed");
 
       setFormStatus("success");
-      setTimeout(() => {
-        setFormStatus("idle");
-        e.currentTarget.reset();
-      }, 3000);
-    } catch (error) {
+      (e.target as HTMLFormElement).reset();
+    } catch (err) {
       setFormStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : String(error));
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setIsSubmitting(false);
     }
@@ -75,141 +67,150 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-24 sm:py-32 bg-black overflow-hidden"
+      className="bg-black py-24 sm:py-32 px-6 sm:px-10 lg:px-16"
     >
-      {/* Background glow */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/3 left-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/2 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-2000" />
-      </div>
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <p className="text-neutral-600 text-[11px] uppercase tracking-[0.3em] font-medium mb-8">
+          Contact
+        </p>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight max-w-xl">
+            Let&apos;s build something together.
+          </h2>
+          <p className="text-neutral-500 text-base max-w-sm leading-relaxed">
+            Have a project in mind or just want to talk? Drop a message — I
+            reply within 24 hours.
+          </p>
+        </div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto"
-        >
-          {/* Header */}
-          <div className="mb-16">
-            <span className="text-slate-400 text-xl">Get in Touch</span>
-            <h2 className="text-5xl sm:text-6xl font-black text-white mt-4">
-              Let's work together
-            </h2>
-            <p className="text-white/60 text-xl mt-6 max-w-3xl">
-              Have a project or opportunity in mind? Drop a message and let’s
-              build something meaningful.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Info */}
-            <div className="space-y-6">
-              <div className="flex gap-5 p-6 bg-white/5 border border-white/10 rounded-2xl">
-                <Mail className="text-white" />
-                <div>
-                  <p className="text-white/50 text-sm">Email</p>
-                  <p className="text-white font-semibold">
-                    caulcrickp@gmail.com
-                  </p>
-                </div>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+          {/* Left — info */}
+          <div className="flex flex-col gap-5">
+            <a
+              href="mailto:caulcrickp@gmail.com"
+              className="flex items-center gap-4 p-5 bg-[#0d0d0d] border border-white/[0.08] rounded-xl hover:border-white/20 transition-colors group"
+            >
+              <div className="w-10 h-10 rounded-lg bg-white/[0.06] flex items-center justify-center shrink-0">
+                <Mail className="w-4 h-4 text-neutral-400" />
               </div>
-
-              <div className="flex gap-5 p-6 bg-white/5 border border-white/10 rounded-2xl">
-                <MapPin className="text-white" />
-                <div>
-                  <p className="text-white/50 text-sm">Location</p>
-                  <p className="text-white font-semibold">Lagos, Nigeria</p>
-                </div>
+              <div>
+                <p className="text-neutral-600 text-xs mb-0.5">Email</p>
+                <p className="text-white text-sm font-medium group-hover:text-neutral-300 transition-colors">
+                  caulcrickp@gmail.com
+                </p>
               </div>
+            </a>
 
-              <div className="flex gap-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10"
-                  >
-                    <link.icon className="h-6 w-6 text-white/70" />
-                  </a>
-                ))}
+            <div className="flex items-center gap-4 p-5 bg-[#0d0d0d] border border-white/[0.08] rounded-xl">
+              <div className="w-10 h-10 rounded-lg bg-white/[0.06] flex items-center justify-center shrink-0">
+                <MapPin className="w-4 h-4 text-neutral-400" />
+              </div>
+              <div>
+                <p className="text-neutral-600 text-xs mb-0.5">Location</p>
+                <p className="text-white text-sm font-medium">Lagos, Nigeria</p>
               </div>
             </div>
 
-            {/* Form */}
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
-              {formStatus === "success" ? (
-                <div className="text-center py-16">
-                  <h3 className="text-2xl font-bold text-white">
-                    Message sent 🚀
-                  </h3>
-                  <p className="text-white/60 mt-2">
-                    I’ll get back to you shortly.
-                  </p>
+            {/* Socials */}
+            <div className="flex gap-3 mt-1">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/[0.08] rounded-xl text-neutral-500 hover:text-white hover:border-white/20 transition-colors"
+                >
+                  <link.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — form */}
+          <div className="bg-[#0d0d0d] border border-white/[0.08] rounded-2xl p-6 sm:p-8">
+            {formStatus === "success" ? (
+              <div className="flex flex-col items-center justify-center h-full py-16 text-center">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
+                  <Send className="w-5 h-5 text-white" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Honeypot */}
-                  <input
-                    type="text"
-                    name="company"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    className="hidden"
-                  />
+                <h3 className="text-white text-xl font-bold mb-2">
+                  Message sent!
+                </h3>
+                <p className="text-neutral-500 text-sm">
+                  I&apos;ll get back to you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                />
 
-                  <input
-                    name="name"
-                    placeholder="Your name"
-                    required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white"
-                  />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-neutral-500 text-xs font-medium">
+                      Name
+                    </label>
+                    <input
+                      name="name"
+                      required
+                      placeholder="Your name"
+                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-white/30 transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-neutral-500 text-xs font-medium">
+                      Email
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@example.com"
+                      className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-white/30 transition-colors"
+                    />
+                  </div>
+                </div>
 
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white"
-                  />
-
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-neutral-500 text-xs font-medium">
+                    Message
+                  </label>
                   <textarea
                     name="message"
-                    placeholder="Tell me about your project..."
-                    rows={6}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white resize-none"
+                    rows={5}
+                    placeholder="Tell me about your project..."
+                    className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-white/30 transition-colors resize-none"
                   />
+                </div>
 
-                  {formStatus === "error" && (
-                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <p className="text-red-400 text-sm">
-                        Something went wrong. Please try again.
-                      </p>
-                      {errorMessage && (
-                        <p className="text-red-300/70 text-xs mt-1">
-                          {errorMessage}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                {formStatus === "error" && (
+                  <p className="text-red-400 text-sm">
+                    {errorMessage || "Something went wrong. Please try again."}
+                  </p>
+                )}
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 bg-white text-black rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-50 hover:bg-white/90"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                    <Send className="h-5 w-5" />
-                  </button>
-                </form>
-              )}
-            </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-white text-black text-sm font-bold rounded-lg hover:bg-neutral-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            )}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
